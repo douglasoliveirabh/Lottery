@@ -11,7 +11,7 @@ namespace Lottery.Domain.Application
     /// <typeparam name="T"></typeparam>
     public interface ISorteio<T>
     {
-        ValidationResult RegistrarNovoBilhete(T ticket);
+        ValidationResult RegistrarNovoBilhete(int[] numerosBilhete);
         void Sortear();        
     }
 }

@@ -18,10 +18,17 @@ namespace Lottery.Domain.Validators
 
             RuleFor(x => x.Numeros)
                 .Must(NumbersWithPermitedLenght)
-                .WithMessage("Seu bilhete deve conter 6 números")
+                .WithMessage("Seu bilhete deve conter 6 números.")
                 .Must(NumbersInTheRange)
-                .WithMessage("Os numeros do seu bilhete deve estar entre 1 e 60");
+                .WithMessage("Os numeros do seu bilhete deve estar entre 1 e 60.")
+                .Must(NumbersWithRepeat)
+                .WithMessage("A sequência não pode conter números repetidos.");
 
+        }
+
+        private bool NumbersWithRepeat(int[] numbers)
+        {
+            return !numbers.ToList().Where(n => numbers.Count(x => x == n) > 1).Any();            
         }
 
         private bool NumbersWithPermitedLenght(int[] numbers)
@@ -29,7 +36,8 @@ namespace Lottery.Domain.Validators
             return numbers.Length == 6;
         }
 
-        private bool NumbersInTheRange(int[] numbers) {
+        private bool NumbersInTheRange(int[] numbers)
+        {
             return !numbers.ToList().Where(x => x < 1 || x > 60).Any();
         }
 

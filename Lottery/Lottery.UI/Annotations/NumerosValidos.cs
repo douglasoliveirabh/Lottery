@@ -9,11 +9,12 @@ namespace Lottery.UI.Annotations
     public class NumerosValidos : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            if (value == null) return ValidationResult.Success;
-            var arrayValue = value.ToString().Split(",");
+        {                       
             try
             {
+                if (value == null) return new ValidationResult("Informe os números do seu bilhete.");
+
+                var arrayValue = value.ToString().Split(",");
                 var intArrayValue = arrayValue.Select(x => int.Parse(x)).ToArray();
                 return ValidationResult.Success;
             }

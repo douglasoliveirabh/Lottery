@@ -11,7 +11,7 @@ namespace Lottery.IoC
     {
         public static void RegisterServices(IServiceCollection services)
         {
-            services.AddScoped<ISorteioMegaSena, SorteioMegaSena>();
+            services.AddSingleton<ISorteioMegaSena, SorteioMegaSena>();
         }
     }
 }

@@ -11,8 +11,10 @@ namespace Lottery.Tests
     {
         private const int IdBilheteValido = 5;
         private const int IdBilheteInValido = 0;
-        private int[] TamanhoArrayNumerosValido = { 2, 22, 33, 5, 10, 11 };
-        private int[] TamanhoArrayNumerosInValido = { 2, 22, 33, 5, 10 };
+        private int[] ArrayNumerosValidos = { 2, 22, 33, 5, 10, 11 };
+        private int[] ArrayNumerosInValidos = { 2, 22, 33, 5, 10 };
+
+        private int[] ArrayNumerosComRepeticoes = { 2, 22, 33, 5, 10, 22 };
 
         private int[] ArrayNumerosComRangeValido = { 2, 22, 33, 5, 10, 11 };
         private int[] ArrayNumerosComRangeInValido = { 0, 22, 33, 5, 10, 61 };
@@ -27,16 +29,25 @@ namespace Lottery.Tests
         [Trait("BilheteMegaSena", "DomainTests")]
         private void Deve_Testar_BilheteMegaSena_Com_Id_Valido()
         {            
-            var bilheteMegaSena = new BilheteMegaSena(IdBilheteValido, TamanhoArrayNumerosValido);
+            var bilheteMegaSena = new BilheteMegaSena(IdBilheteValido, ArrayNumerosValidos);
             var valid = bilheteMegaSena.IsValid;
             Assert.True(valid);
         }
 
         [Fact]
         [Trait("BilheteMegaSena", "DomainTests")]
+        private void Deve_Testar_BilheteMegaSena_Com_Repeticoes()
+        {
+            var bilheteMegaSena = new BilheteMegaSena(IdBilheteValido, ArrayNumerosComRepeticoes);
+            var valid = bilheteMegaSena.IsValid;
+            Assert.False(valid);
+        }
+
+        [Fact]
+        [Trait("BilheteMegaSena", "DomainTests")]
         private void Deve_Testar_BilheteMegaSena_Com_Id_InValido()
         {         
-            var bilheteMegaSena = new BilheteMegaSena(IdBilheteInValido, TamanhoArrayNumerosValido);
+            var bilheteMegaSena = new BilheteMegaSena(IdBilheteInValido, ArrayNumerosValidos);
             var valid = bilheteMegaSena.IsValid;
             Assert.False(valid);
         }
@@ -45,7 +56,7 @@ namespace Lottery.Tests
         [Trait("BilheteMegaSena", "DomainTests")]
         private void Deve_Testar_BilheteMegaSena_Com_Quantidade_Numeros_Correta()
         {            
-            var bilheteMegaSena = new BilheteMegaSena(IdBilheteValido, TamanhoArrayNumerosValido);
+            var bilheteMegaSena = new BilheteMegaSena(IdBilheteValido, ArrayNumerosValidos);
             var valid = bilheteMegaSena.IsValid;
             Assert.True(valid);
         }
@@ -54,7 +65,7 @@ namespace Lottery.Tests
         [Trait("BilheteMegaSena", "DomainTests")]
         private void Deve_Testar_BilheteMegaSena_Com_Quantidade_Numeros_InCorreta()
         {            
-            var bilheteMegaSena = new BilheteMegaSena(IdBilheteValido, TamanhoArrayNumerosInValido);
+            var bilheteMegaSena = new BilheteMegaSena(IdBilheteValido, ArrayNumerosInValidos);
             var valid = bilheteMegaSena.IsValid;
             Assert.False(valid);
         }

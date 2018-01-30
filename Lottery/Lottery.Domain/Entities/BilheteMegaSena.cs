@@ -33,6 +33,25 @@ namespace Lottery.Domain.Entities
             }
         }
 
+        public bool NaoPossuiAcertos(int[] numerosSorteados)
+        {
+            return PossuiNumeroAcertos(0, numerosSorteados);
+        }
+
+        public bool PossuiUmAcerto(int[] numerosSorteados) {
+            return PossuiNumeroAcertos(1, numerosSorteados);
+        }
+
+        public bool PossuiDoisAcertos(int[] numerosSorteados)
+        {
+            return PossuiNumeroAcertos(2, numerosSorteados);
+        }
+
+        public bool PossuiTresAcertos(int[] numerosSorteados)
+        {
+            return PossuiNumeroAcertos(3, numerosSorteados);
+        }
+
         public bool EhVencedorQuadra(int[] numerosSorteados)
         {
             return PossuiNumeroAcertos(4, numerosSorteados);
@@ -49,9 +68,12 @@ namespace Lottery.Domain.Entities
         }
 
         private bool PossuiNumeroAcertos(int numeroAcertos, int[] numerosSorteados)
-        {          
-            var acertos = numerosSorteados.ToList().Where(x => Numeros.Contains(x)).ToList();
-            return acertos.Count() == numeroAcertos;
+        {                   
+            return QuantidadeAcertos(numerosSorteados) == numeroAcertos;
+        }
+
+        private int QuantidadeAcertos(int[] numerosSorteados) {
+           return numerosSorteados.ToList().Where(x => Numeros.Contains(x)).ToList().Count();
         }
 
     }

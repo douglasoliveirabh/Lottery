@@ -10,9 +10,9 @@ namespace Lottery.Domain.Application
     /// </summary>
     public interface ISorteioMegaSena : ISorteio<BilheteMegaSena>
     {
-        List<BilheteMegaSena> ObtemVencedoresQuadra(int[] numerosSorteados);
-        List<BilheteMegaSena> ObtemVencedoresQuina(int[] numerosSorteados);
-        List<BilheteMegaSena> ObtemVencedoresSena(int[] numerosSorteados);
+        List<BilheteMegaSena> ObtemVencedoresQuadra();
+        List<BilheteMegaSena> ObtemVencedoresQuina();
+        List<BilheteMegaSena> ObtemVencedoresSena();
         void GeraBilhetesAleatorios(int quantidadeBilhetes);
 
     }
